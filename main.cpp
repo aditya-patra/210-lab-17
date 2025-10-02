@@ -90,13 +90,18 @@ void addFront(Node * &head, int tmp_val) {
 
 void addTail(Node * &head, int tmp_val) {
     Node * newVal = new Node;
+    Node * current;
     if (!head) { // if this is the first node, it's the new head
         head = newVal;
         newVal->next = nullptr;
         newVal->value = tmp_val;
     }
     else { // its a second or subsequent node; place at the head
-        head->next = newVal;
+        current = head;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newVal;
         newVal->value = tmp_val;
         newVal->next = nullptr;
     }

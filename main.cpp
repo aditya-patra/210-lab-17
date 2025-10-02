@@ -61,14 +61,7 @@ int main() {
     insertNode(head);
     output(head);
 
-    // deleting the linked list
-    current = head;
-    while (current) {
-        head = current->next;
-        delete current;
-        current = head;
-    }
-    head = nullptr;
+    deleteList(head);
     output(head);
 
     return 0;
@@ -170,4 +163,16 @@ void insertNode(Node *head) {
     newnode->value = 10000;
     newnode->next = current;
     prev->next = newnode;
+}
+
+void deleteList(Node *head) {
+    // deleting the linked list
+    Node *current;
+    current = head;
+    while (current) {
+        head = current->next;
+        delete current;
+        current = head;
+    }
+    head = nullptr;
 }

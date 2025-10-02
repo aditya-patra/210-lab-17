@@ -22,33 +22,26 @@ struct Node {
 };
 
 void output(Node *);
-void addFront(Node *, Node *, int);
-void addTail(Node *, Node *, int);
-void deleteNode(Node *);
-void insertNode(Node *);
-void deleteList(Node *);
+void addFront(Node * &, int);
+void addTail(Node * &, int);
+void deleteNode(Node * &);
+void insertNode(Node * &);
+void deleteList(Node * &);
 
 int main() {
     Node *head = nullptr;
     int count = 0;
 
     // create a linked list of size SIZE with random numbers 0-99
+    Node *newVal;
     for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
-        Node *newVal = new Node;
+        newVal = new Node;
         
-        // adds node at head
-        if (!head) { // if this is the first node, it's the new head
-            head = newVal;
-            newVal->next = nullptr;
-            newVal->value = tmp_val;
-        }
-        else { // its a second or subsequent node; place at the head
-            newVal->next = head;
-            newVal->value = tmp_val;
-            head = newVal;
-        }
+        addFront(head, tmp_val);
     }
+    newVal = new Node;
+    addTail(head, 26);
     output(head);
 
     // deleting a node
@@ -81,33 +74,35 @@ void output(Node * hd) {
     cout << endl;
 }
 
-void addHead(Node *head, Node* newVal, int tmp_val) {
-        if (!head) { // if this is the first node, it's the new head
-            head = newVal;
-            newVal->next = nullptr;
-            newVal->value = tmp_val;
-        }
-        else { // its a second or subsequent node; place at the head
-            newVal->next = head;
-            newVal->value = tmp_val;
-            head = newVal;
-        }
+void addFront(Node * &head, int tmp_val) {
+    Node * newVal = new Node;
+    if (!head) { // if this is the first node, it's the new head
+        head = newVal;
+        newVal->next = nullptr;
+        newVal->value = tmp_val;
+    }
+    else { // its a second or subsequent node; place at the head
+        newVal->next = head;
+        newVal->value = tmp_val;
+        head = newVal;
+    }
 }
 
-void addTail(Node *head, Node* newVal, int tmp_val) {
-        if (!head) { // if this is the first node, it's the new head
-            head = newVal;
-            newVal->next = nullptr;
-            newVal->value = tmp_val;
-        }
-        else { // its a second or subsequent node; place at the head
-            head->next = newVal;
-            newVal->value = tmp_val;
-            newVal->next = nullptr;
-        }
+void addTail(Node * &head, int tmp_val) {
+    Node * newVal = new Node;
+    if (!head) { // if this is the first node, it's the new head
+        head = newVal;
+        newVal->next = nullptr;
+        newVal->value = tmp_val;
+    }
+    else { // its a second or subsequent node; place at the head
+        head->next = newVal;
+        newVal->value = tmp_val;
+        newVal->next = nullptr;
+    }
 }
 
-void deleteNode(Node *head) {
+void deleteNode(Node * &head) {
     // deleting a node
     Node * current = head;
     cout << "Which node to delete? " << endl;
@@ -134,7 +129,7 @@ void deleteNode(Node *head) {
     }
 }
 
-void insertNode(Node *head) {
+void insertNode(Node * &head) {
     // insert a node
     Node *current;
     Node *prev;
@@ -165,7 +160,7 @@ void insertNode(Node *head) {
     prev->next = newnode;
 }
 
-void deleteList(Node *head) {
+void deleteList(Node * &head) {
     // deleting the linked list
     Node *current;
     current = head;

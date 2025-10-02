@@ -1,3 +1,16 @@
+/*
+Aditya Patra
+Modularize Linked List
+Lab 17
+
+Purpose:
+Rewrite the code such that it leverages functions to perform these linked list operations: 
+adding a node to the front
+adding a node to the tail
+deleting a node
+inserting a node
+deleting the entire linked list.
+*/
 #include <iostream>
 using namespace std;
 
